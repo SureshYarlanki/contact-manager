@@ -1,0 +1,46 @@
+/* .landing {
+  background: url("./assets/images/Contact-manager.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.wrapper {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+body{
+  background-color: #f8f4e5 !important;
+}
+#error-message{
+
+  background-color: white;
+}
+.spinner{
+  background-color: rgba(0,0,0,0.5);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.spinner img{
+  display: block;
+  margin: 10% auto;
+}
+.landing{
+  background: white url("./assets/images/Contact-manager.webp")no-repeat scroll center;
+  background-size: cover;
+  height: 100vh;
+  color: white;
+
+}
+.wrapper{
+  background-color: rgba(0,0,0,0.5);
+  height: 100%;
+}
+  
+ 
