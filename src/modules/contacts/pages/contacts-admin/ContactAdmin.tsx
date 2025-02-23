@@ -76,7 +76,7 @@ export const ContactAdmin: React.FC = () => {
     }
     
   }
-  return (
+ return (
     <>
       {loading && "Loading..."}
 
@@ -85,25 +85,26 @@ export const ContactAdmin: React.FC = () => {
       {!loading && errorMessage.length > 0}
       {/* <pre>{JSON.stringify(state.filteredContacts.length) }</pre> */}
       <div className="container">
-  <div className="row">
-    <div className="col-12 col-md-4">
-      <form>
-        <input
-          value={searchQuery}
-          onChange={e => makeSearch(e)}
-          type="text"
-          className="form-control"
-          placeholder="Search here"
-        />
-      </form>
-    </div>
-    <div className="col-12 col-md-6 mt-2 mt-md-0 d-flex flex-column flex-md-row align-items-md-center">
-      <input type="submit" className="btn btn-dark w-25 w-md-auto" value="Search" />
-      <Link to={"/contacts/add"} className="btn btn-success ms-md-2 w-25 w-md-auto mt-2 mt-md-0">
-        <i className="bi bi-plus-circle-fill"> New</i>
-      </Link>
-    </div>
+      <div className="row">
+  <div className="col-12 col-md-4">
+    <form>
+      <input
+        value={searchQuery}
+        onChange={e => makeSearch(e)}
+        type="text"
+        className="form-control"
+        placeholder="Search here"
+      />
+    </form>
   </div>
+  <div className="col-12 col-md-3 mt-2 mt-md-0 d-flex flex flex-sm-col align-items-sm-center gap-2">
+    <input type="submit" className="btn btn-dark w-100 w-sm-auto" value="Search" />
+    <Link to={"/contacts/add"} className="btn btn-success w-100 w-sm-auto">
+      <i className="bi bi-plus-circle-fill"></i> New
+    </Link>
+  </div>
+</div>
+
 </div>
 
       {/* <pre>{ JSON.stringify(contacts)}</pre> */}
