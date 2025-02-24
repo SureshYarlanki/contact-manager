@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../../Layout/Pages/Navbar/NavBar";
 import Heading from "../../../Layout/Components/heading/Heading";
 import { Link } from "react-router-dom";
@@ -13,23 +13,23 @@ export const ContactAdmin: React.FC = () => {
   const [state, setState] = useState({
     loading: false,
     contacts: [] as IContacts[],
-    filteredContacts:[] as IContacts[],
+    filteredContacts: [] as IContacts[],
     errorMessage: "",
   });
-   
+
   useEffect(() => {
     getAllContactFromServer();
   }, []);
-  
+
 
   const makeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value)
     if (event.target.value.trim() !== "") {
       setState({
         ...state,
-        filteredContacts:state.contacts.filter(contacts=>contacts.name.toLowerCase().trim().includes(event.target.value.toLowerCase().trim()))
+        filteredContacts: state.contacts.filter(contacts => contacts.name.toLowerCase().trim().includes(event.target.value.toLowerCase().trim()))
       })
-      
+
     }
     else {
       setState({
@@ -37,7 +37,7 @@ export const ContactAdmin: React.FC = () => {
         filteredContacts: state.contacts
       })
     }
-    
+
   }
 
   const getAllContactFromServer = () => {
@@ -48,7 +48,7 @@ export const ContactAdmin: React.FC = () => {
           ...state,
           loading: false,
           contacts: response.data,
-          filteredContacts:response.data
+          filteredContacts: response.data
         });
       })
       .catch((error) => {
@@ -61,7 +61,7 @@ export const ContactAdmin: React.FC = () => {
   };
   const { loading, errorMessage, filteredContacts } = state;
 
-   
+
   const clickDeleteContact = (contactId: string | undefined): void => {
     if (contactId) {
       ContactService.deleteContacts(contactId).then((response) => {
@@ -70,42 +70,43 @@ export const ContactAdmin: React.FC = () => {
           ToastUtil.displayInfoToast("Contact is Deleted!")
         }
       }).catch((error) => {
-         ToastUtil.displayErrorToast(error.messages)   
+        ToastUtil.displayErrorToast(error.messages)
       })
       getAllContactFromServer()
     }
-    
+
   }
- return (
+  return (
     <>
-      {loading && "Loading..."}
+
 
       <NavBar color={"bg-dark"} />
       <Heading color={"text-dark"} heading={"Contact Manager"} />
+
       {!loading && errorMessage.length > 0}
       {/* <pre>{JSON.stringify(state.filteredContacts.length) }</pre> */}
       <div className="container">
-      <div className="row">
-  <div className="col-12 col-md-4">
-    <form>
-      <input
-        value={searchQuery}
-        onChange={e => makeSearch(e)}
-        type="text"
-        className="form-control"
-        placeholder="Search here"
-      />
-    </form>
-  </div>
-  <div className="col-12 col-md-3 mt-2 mt-md-0 d-flex flex flex-sm-col align-items-sm-center gap-2">
-    <input type="submit" className="btn btn-dark w-100 w-sm-auto" value="Search" />
-    <Link to={"/contacts/add"} className="btn btn-success w-100 w-sm-auto">
-      <i className="bi bi-plus-circle-fill"></i> New
-    </Link>
-  </div>
-</div>
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <form>
+              <input
+                value={searchQuery}
+                onChange={e => makeSearch(e)}
+                type="text"
+                className="form-control"
+                placeholder="Search here"
+              />
+            </form>
+          </div>
+          <div className="col-12 col-md-3 mt-2 mt-md-0 d-flex flex flex-sm-col align-items-sm-center gap-2">
+            <input type="submit" className="btn btn-dark w-100 w-sm-auto" value="Search" />
+            <Link to={"/contacts/add"} className="btn btn-success w-100 w-sm-auto">
+              <i className="bi bi-plus-circle-fill"></i> New
+            </Link>
+          </div>
+        </div>
 
-</div>
+      </div>
 
       {/* <pre>{ JSON.stringify(contacts)}</pre> */}
 
@@ -128,10 +129,13 @@ export const ContactAdmin: React.FC = () => {
           <div className="container mt-3">
             <div className="row">
               <div className="col text-center">
-                  <p className="h4 text-danger">No Contacts Found </p>
+                <p className="h4 text-danger">
+                  {loading ? "Loading..." : errorMessage ? "Server Error" : "No Contacts Found"}
+                </p>
               </div>
             </div>
           </div>
+
         </>
       )}
     </>
