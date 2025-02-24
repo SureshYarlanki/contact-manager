@@ -38,9 +38,9 @@ export const NavBar: React.FC<IProps> = (props) => {
               <li className="nav-item">
                 <Link to="/" className="nav-link">Home</Link>
               </li>
-              <li className="nav-item">
+{/*               <li className="nav-item">
                 <Link to="/contacts/admin" className="nav-link">Admin</Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
